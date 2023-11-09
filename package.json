@@ -1,6 +1,6 @@
 {
   "name": "stimulus-if",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Stimulus controller for declarative dynamic form flows",
   "main": "index.js",
   "scripts": {
