@@ -1,0 +1,14 @@
+{
+  "name": "stimulus-if",
+  "version": "0.1.0",
+  "description": "Stimulus controller for declarative dynamic form flows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "stimulus-shorthand": "^0.1.0"
+  }
+}
