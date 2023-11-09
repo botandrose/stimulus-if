@@ -32,6 +32,7 @@ export default class extends Controller {
       case '==': return field.value == JSON.parse(value)
       case 'in': return JSON.parse(value).includes(field.value)
       case 'is': return field.getProperty(value) === true
+      case 'not': return field.getProperty(value) !== true
       default: throw `unknown operation ${op}`
     }
   }
