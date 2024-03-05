@@ -8,7 +8,8 @@ export default class extends Controller {
   }
 
   connect() {
-    this.formTarget = this.element.closest("form")
+    this.condition = new Condition(this.conditionValue)
+    this.formTarget = this.condition.form || this.element.closest("form")
     this.formTarget.addEventListener("change", _ => this.render())
     this.render()
   }
@@ -18,9 +19,8 @@ export default class extends Controller {
   }
 
   test() {
-    const [_, fieldName, operation, value] = this.conditionValue.match(/^([^ ]+) ([^ ]+) (.+)$/)
-    const field = this.getField(fieldName)
-    return this.applyOperation(field, operation, value)
+    const field = this.getField(this.condition.fieldName)
+    return this.applyOperation(field, this.condition.operation, this.condition.value)
   }
 
   getField(fieldName) {
@@ -35,6 +35,20 @@ export default class extends Controller {
       case 'not': return field.getProperty(value) !== true
       default: throw `unknown operation ${op}`
     }
+  }
+}
+
+class Condition {
+  constructor(string) {
+    const [_, fieldName, operation, value] = string.match(/^([^ ]+) ([^ ]+) (.+)$/)
+    this.fieldName = fieldName
+    if(this.fieldName.includes(".")) {
+      const [formName, fieldName2] = this.fieldName.split(".")
+      this.fieldName = fieldName2
+      this.form = document.forms[formName]
+    }
+    this.operation = operation
+    this.value = value
   }
 }
 
