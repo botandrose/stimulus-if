@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Condition DSL.** `Condition` parses the value string with `/^([^ ]+) ([^ ]+) (.+)$/` — exactly three parts: field name, operation, value. The field name and operation may not contain spaces; the value may. A field name containing a `.` is `formName.fieldName` and resolves the form via `document.forms[formName]`; otherwise the controller uses `this.element.closest("form")`.
 
 **Operations** (`applyOperation`) — an unknown operation throws:
-- `==` / `in` — the value is `JSON.parse`d, so string literals need quotes inside the attribute (`data-if='kind == "book"'`).
+- `==` / `!=` / `in` — the value is `JSON.parse`d, so string literals need quotes inside the attribute (`data-if='kind == "book"'`). The equality comparisons are intentionally loose, since `field.value` is always a string.
 - `is` / `not` — the value is a DOM property name read off the field element (`checked`, `disabled`, …), compared strictly against `true`.
 
 **Field dispatch.** `Field.fromName` calls `form.elements.namedItem(name)`, which returns either a single element or a `RadioNodeList`, then picks the **first** class in the ordered list whose static `matches` returns true. Two consequences:

@@ -47,6 +47,7 @@ A condition is three space-separated parts: `<field> <operation> <value>`. The f
 | Operation | Meaning | Example |
 | --- | --- | --- |
 | `==` | field value equals the value | `data-if='role == "admin"'` |
+| `!=` | field value does not equal the value | `data-if='role != "admin"'` |
 | `in` | field value is in the list | `data-if='role in ["admin","owner"]'` |
 | `is` | DOM property on the field is `true` | `data-if="shipping is checked"` |
 | `not` | DOM property on the field is not `true` | `data-if="shipping not checked"` |
