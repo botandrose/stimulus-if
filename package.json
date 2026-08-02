@@ -9,12 +9,20 @@
     "index.js"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "ci": "vitest run --coverage"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "stimulus-shorthand": "^0.1.0"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.10",
+    "happy-dom": "^20.0.8",
+    "vitest": "^4.1.10"
   }
 }
