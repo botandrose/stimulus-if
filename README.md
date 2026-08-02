@@ -70,7 +70,25 @@ By default the field is looked up in the nearest ancestor `<form>`. Prefix the f
 
 ### Supported fields
 
-Text inputs, selects, radio groups, and single checkboxes are supported, including the hidden-input-plus-checkbox pair that Rails' `check_box` helper emits. Multi-checkbox groups (several checkboxes sharing one name) are not yet working.
+Text inputs, selects, radio groups, single checkboxes, and checkbox groups are all supported, including the hidden-input-plus-checkbox pairs that Rails' `check_box` helper emits — an unchecked box falls back to the hidden input's value rather than reading as empty.
+
+For a group of checkboxes sharing one name, `is`/`not` ask whether *any* box in the group is checked, `in` matches when *any* checked box is in the list, and the group's value is its checked values joined by commas:
+
+```html
+<input type="checkbox" name="tags" value="a">
+<input type="checkbox" name="tags" value="b">
+
+<div data-if="tags is checked">…</div>
+<div data-if='tags in ["b","c"]'>…</div>
+<div data-if='tags == "a,b"'>…</div>
+```
+
+## Development
+
+```sh
+npm install
+npm test
+```
 
 ## License
 
