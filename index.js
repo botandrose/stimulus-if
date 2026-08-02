@@ -120,7 +120,11 @@ class Checkboxes extends Field {
   }
 
   get value() {
-    return Array.from(this.namedItemResult).filter(e => e.checked).map(e.value)
+    return Array.from(this.namedItemResult).filter(e => e.checked).map(e => e.value)
+  }
+
+  getProperty(prop) {
+    return Array.from(this.namedItemResult).some(e => e[prop] === true)
   }
 }
 
@@ -130,12 +134,16 @@ class CheckboxesWithHidden extends Field {
   }
 
   get value() {
-    const checkedValues = Array.from(this.namedItemResult).filter(e => e.checked).map(e.value)
+    const checkedValues = Array.from(this.namedItemResult).filter(e => e.checked).map(e => e.value)
     if(checkedValues.length > 0) {
       return checkedValues
     } else {
       return this.namedItemResult[0].value
     }
+  }
+
+  getProperty(prop) {
+    return Array.from(this.namedItemResult).some(e => e.type === "checkbox" && e[prop] === true)
   }
 }
 
