@@ -31,10 +31,18 @@ export default class extends Controller {
     switch(op) {
       case '==': return field.value == JSON.parse(value)
       case '!=': return field.value != JSON.parse(value)
-      case 'in': return JSON.parse(value).includes(field.value)
+      case 'in': return this.includedIn(field.value, JSON.parse(value))
       case 'is': return field.getProperty(value) === true
       case 'not': return field.getProperty(value) !== true
       default: throw `unknown operation ${op}`
+    }
+  }
+
+  includedIn(fieldValue, list) {
+    if(Array.isArray(fieldValue)) {
+      return fieldValue.some(v => list.includes(v))
+    } else {
+      return list.includes(fieldValue)
     }
   }
 }

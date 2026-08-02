@@ -64,6 +64,21 @@ describe("operations", () => {
       await set("[name=role]", "admin")
       expect(shown()).toBe(true)
     })
+
+    it("matches when any checked value in a group is in the list", async () => {
+      await mount(`
+        <form>
+          <input type="checkbox" name="tags" value="a">
+          <input type="checkbox" name="tags" value="b">
+          <div id="subject" data-if='tags in ["b","c"]'></div>
+        </form>
+      `)
+      expect(shown()).toBe(false)
+      await check("[value=a]")
+      expect(shown()).toBe(false)
+      await check("[value=b]")
+      expect(shown()).toBe(true)
+    })
   })
 
   describe("is", () => {
