@@ -2,13 +2,19 @@
   "name": "stimulus-if",
   "version": "0.3.0",
   "description": "Stimulus controller for declarative dynamic form flows",
+  "type": "module",
   "main": "index.js",
+  "exports": "./index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "stimulus-shorthand": "^0.1.0"
   }
 }
